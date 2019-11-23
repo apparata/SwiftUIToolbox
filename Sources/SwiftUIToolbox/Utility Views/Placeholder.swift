@@ -13,7 +13,7 @@ public struct Placeholder: View {
     public var body: some View {
         GeometryReader { geometry in
             ZStack {
-                RoundedRectangle(cornerRadius: 6)
+                RoundedRectangle(cornerRadius: self.cornerRadius)
                     .foregroundColor(self.background)
                 Text("\(Self.numberFormatter.string(from: geometry.size.width as NSNumber) ?? "?") x \(Self.numberFormatter.string(from: geometry.size.height as NSNumber) ?? "?")")
                     .foregroundColor(self.foreground)
