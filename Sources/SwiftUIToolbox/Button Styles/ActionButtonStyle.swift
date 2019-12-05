@@ -4,9 +4,9 @@
 
 import SwiftUI
 
-struct ActionButtonStyle: ButtonStyle {
+public struct ActionButtonStyle: ButtonStyle {
     
-    func makeBody(configuration: Self.Configuration) -> some View {
+    public func makeBody(configuration: Self.Configuration) -> some View {
       configuration.label
         .padding(EdgeInsets(top: 2, leading: 10, bottom: 4, trailing: 10))
         .foregroundColor(configuration.isPressed ? Color.white : Color.accentColor)

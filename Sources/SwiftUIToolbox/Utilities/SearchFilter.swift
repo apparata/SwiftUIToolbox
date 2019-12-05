@@ -3,16 +3,17 @@
 //
 
 import Foundation
+import Combine
 
-protocol SearchFilterable {
+public protocol SearchFilterable {
     func isMatch(for searchString: String) -> Bool
 }
 
-class SearchFilter<T: SearchFilterable>: ObservableObject {
+public class SearchFilter<T: SearchFilterable>: ObservableObject {
     
-    @Published var searchText: String = ""
+    @Published public var searchText: String = ""
     
-    func apply(to values: [T]) -> [T] {
+    public func apply(to values: [T]) -> [T] {
         let matchString = searchText
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .lowercased()
