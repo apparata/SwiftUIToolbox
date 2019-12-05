@@ -6,6 +6,10 @@ import SwiftUI
 
 public struct ActionButtonStyle: ButtonStyle {
     
+    public init() {
+        //
+    }
+    
     public func makeBody(configuration: Self.Configuration) -> some View {
       configuration.label
         .padding(EdgeInsets(top: 2, leading: 10, bottom: 4, trailing: 10))

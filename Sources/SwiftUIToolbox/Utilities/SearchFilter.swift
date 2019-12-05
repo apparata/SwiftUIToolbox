@@ -13,6 +13,10 @@ public class SearchFilter<T: SearchFilterable>: ObservableObject {
     
     @Published public var searchText: String = ""
     
+    public init() {
+        //
+    }
+    
     public func apply(to values: [T]) -> [T] {
         let matchString = searchText
             .trimmingCharacters(in: .whitespacesAndNewlines)
