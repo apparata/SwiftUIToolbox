@@ -7,18 +7,18 @@
 import Cocoa
 import SwiftUI
 
-struct SidebarSearchField: NSViewRepresentable {
+public struct SidebarSearchField: NSViewRepresentable {
     
     @Binding var text: String
     
     private var placeholder: String
 
-    init(text: Binding<String>, placeholder: String = "Search") {
+    public init(text: Binding<String>, placeholder: String = "Search") {
         _text = text
         self.placeholder = placeholder
     }
 
-    func makeNSView(context: Context) -> NSVisualEffectView {
+    public func makeNSView(context: Context) -> NSVisualEffectView {
         let wrapperView = NSVisualEffectView()
         let searchField = NSSearchField(string: placeholder)
         searchField.delegate = context.coordinator
@@ -36,22 +36,22 @@ struct SidebarSearchField: NSViewRepresentable {
         return wrapperView
     }
 
-    func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
+    public func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
         (nsView.subviews[0] as? NSSearchField)?.stringValue = text
     }
 
-    func makeCoordinator() -> Coordinator {
+    public func makeCoordinator() -> Coordinator {
         Coordinator { self.text = $0 }
     }
 
-    final class Coordinator: NSObject, NSSearchFieldDelegate {
+    final public class Coordinator: NSObject, NSSearchFieldDelegate {
         var mutator: (String) -> Void
 
         init(_ mutator: @escaping (String) -> Void) {
             self.mutator = mutator
         }
 
-        func controlTextDidChange(_ notification: Notification) {
+        public func controlTextDidChange(_ notification: Notification) {
             if let textField = notification.object as? NSTextField {
                 mutator(textField.stringValue)
             }
