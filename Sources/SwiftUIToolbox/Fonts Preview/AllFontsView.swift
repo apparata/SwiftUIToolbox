@@ -2,20 +2,26 @@
 //  Copyright © 2020 Apparata AB. All rights reserved.
 //
 
-#if canImport(SwiftUI) && canImport(UIKit) && DEBUG
+#if canImport(SwiftUI) && DEBUG
 import SwiftUI
+#if canImport(UIKit)
 import UIKit
+typealias KitFont = UIFont
+#else
+import Cocoa
+typealias KitFont = NSFont
+#endif
 
 public struct AllFontsView: View {
     
     public var body: some View {
-        List(UIFont.familyNames, id: \.self) { fontFamily in
+        List(KitFont.familyNames, id: \.self) { fontFamily in
             VStack(alignment: .leading) {
                 Text(fontFamily)
                     .font(.system(size: 18, weight: .bold, design: .default))
                     .padding(4)
                     .padding(.bottom)
-                ForEach(UIFont.fontNames(forFamilyName: fontFamily), id: \.self) { font in
+                ForEach(KitFont.fontNames(forFamilyName: fontFamily), id: \.self) { font in
                     Text(font)
                         .font(.custom(font, size: 18))
                 }
