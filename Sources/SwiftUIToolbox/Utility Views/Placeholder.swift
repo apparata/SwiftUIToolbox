@@ -16,8 +16,11 @@ public struct Placeholder: View {
             ZStack {
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .foregroundColor(background)
-                Text(makeText(geometry: geometry))
-                    .foregroundColor(foreground)
+                VStack {
+                    title.map { Text($0) }
+                    Text(makeText(geometry: geometry))
+                        .foregroundColor(foreground)
+                }
             }
         }
     }
@@ -30,11 +33,7 @@ public struct Placeholder: View {
     }
     
     private func makeText(geometry: GeometryProxy) -> String {
-        return [
-            title.flatMap { "\($0)\n" },
-            "\(Self.numberFormatter.string(from: geometry.size.width as NSNumber) ?? "?") x \(Self.numberFormatter.string(from: geometry.size.height as NSNumber) ?? "?")"
-        ].compactMap { $0 }
-        .joined()
+        return "\(Self.numberFormatter.string(from: geometry.size.width as NSNumber) ?? "?") x \(Self.numberFormatter.string(from: geometry.size.height as NSNumber) ?? "?")"
     }
     
     private static let numberFormatter: NumberFormatter = {
