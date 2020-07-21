@@ -17,7 +17,10 @@ public struct Placeholder: View {
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .foregroundColor(background)
                 VStack {
-                    title.map { Text($0) }
+                    title.map {
+                        Text($0)
+                            .foregroundColor(foreground)
+                    }
                     Text(makeText(geometry: geometry))
                         .foregroundColor(foreground)
                 }
