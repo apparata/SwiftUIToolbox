@@ -9,6 +9,43 @@ public typealias Pickable = CaseIterable
                           & Hashable
                           & CustomStringConvertible
 
+/// A convenience wrapper for `Picker` that makes it easier to use an `enum` for as the options.
+///
+/// The enum must conform to the `Pickable` protocol.
+///
+/// Example:
+///
+/// ```
+/// enum Fruit: Pickable {
+///     case apple
+///     case banana
+///     case mango
+///     case orange
+///     case pear
+///
+///     var id: Self { self }
+///
+///     var description: String {
+///         switch self {
+///         case .apple: return "🍎 Apple"
+///         case .banana: return "🍌 Banana"
+///         case .mango: return "🥭 Mango"
+///         case .orange: return "🍊 Orange"
+///         case .pear: return "🍐 Pear"
+///         }
+///     }
+/// }
+///
+/// struct ExampleView: View {
+///     @State var selectedFruit: Fruit = .apple
+///
+///     var body: some View {
+///         EnumPicker("Fruit", selection: $selectedFruit)
+///             .pickerStyle(SegmentedPickerStyle())
+///             .padding()
+///     }
+/// }
+/// ```
 public struct EnumPicker<Enum: Pickable, Label: View>: View {
     
     private let label: Label

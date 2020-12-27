@@ -7,6 +7,7 @@
 import UIKit
 import SwiftUI
 
+/// Allows for objects that inherit from `UIView` to be previewed in the SwiftUI preview window in Xcode.
 @available(iOS 13.0, *)
 public struct UIViewPreview<View: UIView>: UIViewRepresentable {
     public let view: View

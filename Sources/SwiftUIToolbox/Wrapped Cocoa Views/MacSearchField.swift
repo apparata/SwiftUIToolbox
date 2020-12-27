@@ -7,6 +7,7 @@
 import Cocoa
 import SwiftUI
 
+/// Wrapper view for `NSSearchField`.
 public struct MacSearchField: NSViewRepresentable {
     
     @Binding var text: String

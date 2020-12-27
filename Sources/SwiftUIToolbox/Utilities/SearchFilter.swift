@@ -9,6 +9,7 @@ public protocol SearchFilterable {
     func isMatch(for searchString: String) -> Bool
 }
 
+/// Object that conforms to `ObservableObject` for making simple search filters.
 public class SearchFilter<T: SearchFilterable>: ObservableObject {
     
     @Published public var searchText: String = ""

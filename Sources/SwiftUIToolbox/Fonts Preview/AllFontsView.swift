@@ -6,6 +6,8 @@
 import SwiftUI
 import UIKit
 
+/// The `AllFontsView` is a list view that is available in `DEBUG` builds that displays all the available
+/// system fonts.
 public struct AllFontsView: View {
     
     public var body: some View {

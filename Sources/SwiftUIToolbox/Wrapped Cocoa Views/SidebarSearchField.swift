@@ -7,6 +7,7 @@
 import Cocoa
 import SwiftUI
 
+/// Wrapper view for `NSSearchField` specifically for use in the main siderbar.
 public struct SidebarSearchField: NSViewRepresentable {
     
     @Binding var text: String

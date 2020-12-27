@@ -4,6 +4,8 @@
 
 import SwiftUI
 
+/// The `Placeholder` view is a rounded rectangle with an optional title and the size of the view as a
+/// text label.
 public struct Placeholder: View {
     
     public let title: String?

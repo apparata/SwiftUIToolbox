@@ -4,6 +4,15 @@
 
 import SwiftUI
 
+/// The action button style looks like the "Open" button in the App Store or TestFlight apps.
+///
+/// Example:
+///
+/// ```
+/// Button(action: { }) {
+///     Text("Open")
+/// }.buttonStyle(ActionButtonStyle())
+/// ```
 public struct ActionButtonStyle: ButtonStyle {
     
     public init() {
