@@ -2,6 +2,12 @@
 
 The **SwiftUIToolbox** framework consists of a number of  convenience views and utilities for use with SwiftUI. 
 
+## License
+
+See the LICENSE file for licensing information.
+
+## Table of Contents
+
 - [Button Styles](#button-styles)
     - [`ActionButtonStyle`](#actionbuttonstyle)
     - [`PrimaryButtonStyle`](#primarybuttonstyle)
