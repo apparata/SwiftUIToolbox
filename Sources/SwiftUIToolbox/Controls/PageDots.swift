@@ -4,14 +4,21 @@
 
 import SwiftUI
 
-struct PageDots: View {
+/// Emulates the UIKit page control.
+///
+/// Example:
+///
+/// ```
+/// PageDots(currentPage: 0, pageCount: 3)
+/// ```
+public struct PageDots: View {
     
-    let currentPage: Int
-    let pageCount: Int
-    let currentPageColor: (_ page: Int) -> UIColor
-    let pageColor: UIColor
+    public let currentPage: Int
+    public let pageCount: Int
+    public let currentPageColor: (_ page: Int) -> UIColor
+    public let pageColor: UIColor
     
-    init(currentPage: Int,
+    public init(currentPage: Int,
          pageCount: Int,
          currentPageColor: @escaping (_ page: Int) -> UIColor = { _ in .systemBackground },
          pageColor: UIColor = UIColor.systemGray4.withAlphaComponent(0.6)) {
@@ -21,7 +28,7 @@ struct PageDots: View {
         self.pageColor = pageColor
     }
     
-    var body: some View {
+    public var body: some View {
         HStack(spacing: 10) {
             ForEach(0..<pageCount) { page in
                 Circle()
@@ -31,11 +38,5 @@ struct PageDots: View {
                     .animation(.easeInOut(duration: 0.2))
             }
         }
-    }
-}
-
-struct PageDots_Previews: PreviewProvider {
-    static var previews: some View {
-        PageDots(currentPage: 0, pageCount: 3)
     }
 }

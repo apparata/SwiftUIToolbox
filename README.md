@@ -4,14 +4,25 @@ The **SwiftUIToolbox** framework consists of a number of  convenience views and 
 
 - [Button Styles](#button-styles)
     - [`ActionButtonStyle`](#actionbuttonstyle)
+    - [`PrimaryButtonStyle`](#primarybuttonstyle)
+    - [`SecondaryButtonStyle`](#primarybuttonstyle)
 - [Colors](#colors)
     - [`SystemColors`](#systemcolors)
 - [Controls](#controls)
+    - [`DimView`](#dimview)
     - [`EnumPicker`](#enumpicker)
+    - [`HSeparator`](#hseparator)
+    - [`PageDots`](#pagedots)
+    - [`PrimaryButton`](#primarybutton)
+    - [`SecondaryButton`](#primarybutton)
+    - [`VSeparator`](#vseparator)
 - [Fonts](#fonts)
     - [ `AllFontsView`](#allfontsview)
 - [Modifiers](#modifiers)
+    - [`debugPrint(...)`](#debugPrint)
     - [`inverseMask(...)`](#inverseMask)
+- [Shapes](#shapes)
+    - [`Triangle`](#triangle)
 - [UIKit Previews](#uikit-previews)
     - [`UIViewPreview`](#uiviewpreview)
     - [`UIViewControllerPreview`](#uiviewcontrollerpreview)
@@ -22,7 +33,8 @@ The **SwiftUIToolbox** framework consists of a number of  convenience views and 
 - [Wrapped AppKit Views](#wrapped-appkit-views)
     - [`MacSearchField`](#macsearchfield)
     - [`SidebarSearchField`](#sidebarsearchfield)
-
+- [Wrapped UIKit Views](#wrapped-uikit-views)
+    - [`Blur`](#blur)
 
 ## Button Styles
 
@@ -37,6 +49,14 @@ Button(action: { }) {
     Text("Open")
 }.buttonStyle(ActionButtonStyle())
 ```
+
+### `PrimaryButtonStyle`
+
+The primary button style has a back plate with rounded corners.
+
+### `SecondaryButtonStyle`
+
+The secondary button style has a light back plate with rounded corners.
 
 ## Colors
 
@@ -54,6 +74,19 @@ Color.systemFill
 ```
 
 ## Controls
+
+### `DimView`
+
+A black view with 30% opacity (by default) that dims views behind it.
+
+#### Example
+
+```swift
+ZStack {
+    SomeContentView()
+    DimView(opacity: 0.3)
+}
+```
 
 ### `EnumPicker`
 
@@ -102,6 +135,42 @@ struct ExampleView: View {
 }
 ```
 
+### `HSeparator`
+
+A 1 pixel horizontal separator view.
+
+#### Example
+
+```swift
+HSeparator(color: .separator)
+```
+
+### `PageDots`
+
+Emulates the UIKit page control.
+
+#### Example
+
+```swift
+PageDots(currentPage: 0, pageCount: 3)
+```
+
+### `PrimaryButton`
+
+The primary button has a back plate with rounded corners.
+
+### `SecondaryButton`
+
+The secondary button has a light back plate with rounded corners.
+
+### `VSeparator`
+
+A 1 pixel vertical separator view.
+
+```swift
+VSeparator(color: .separator)
+```
+
 ## Fonts
 
 ### `AllFontsView`
@@ -116,9 +185,19 @@ AllFontsView()
 
 ## Modifiers
 
-### `inverseMask`
+### `inverseMask(...)`
 
 Same as the `mask` modifier, only inverted.
+
+### `debugPrint(...)`
+
+Prints a value and returns the unmodified view.
+
+## Shapes
+
+### `Triangle`
+
+Triangle shape that points upwards.
 
 ## UIKit Previews
 
@@ -158,3 +237,15 @@ Wrapper view for `NSSearchField`.
 ### `SidebarSearchField`
 
 Wrapper view for `NSSearchField` specifically for use in the main siderbar.
+
+## Wrapped UIKit Views
+
+### `Blur`
+
+Wrapper view for `UIVisualEffectView` with blur effect
+
+#### Example
+
+```swift
+Blur(isPresented: $showBlur, style: .systemThinMaterial, animated: true)
+```
