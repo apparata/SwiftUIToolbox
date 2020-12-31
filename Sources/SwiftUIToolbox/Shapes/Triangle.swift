@@ -6,6 +6,11 @@ import SwiftUI
 
 /// Triangle shape that points upwards.
 public struct Triangle: Shape {
+    
+    public init() {
+        //
+    }
+    
     public func path(in rect: CGRect) -> Path {
         var path = Path()
 
