@@ -8,29 +8,29 @@ import Foundation
 import SwiftUI
 import UIKit
 
-struct ViewControllerPresenter: View {
+public struct ViewControllerPresenter: View {
     
-    @Binding var isPresented: Bool
+    @Binding public var isPresented: Bool
     
-    var viewController: () -> UIViewController
+    public var viewController: () -> UIViewController
     
-    init(isPresented: Binding<Bool>, viewController: @escaping () -> UIViewController) {
+    public init(isPresented: Binding<Bool>, viewController: @escaping () -> UIViewController) {
         self._isPresented = isPresented
         self.viewController = viewController
     }
     
-    var body: some View {
+    public var body: some View {
         if isPresented {
             PresentingViewControllerWrapper(viewController: viewController)
         }
     }
 }
 
-struct PresentingViewControllerWrapper: UIViewControllerRepresentable {
+public struct PresentingViewControllerWrapper: UIViewControllerRepresentable {
     
     var viewController: () -> UIViewController
     
-    init(viewController: @escaping () -> UIViewController) {
+    public init(viewController: @escaping () -> UIViewController) {
         self.viewController = viewController
     }
     
@@ -44,51 +44,51 @@ struct PresentingViewControllerWrapper: UIViewControllerRepresentable {
         
     }
     
-    func makeCoordinator() -> Coordinator {
+    public func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
     
     // MARK: - Coordinator
     
-    class Coordinator: PresentingViewControllerDelegate {
+    public class Coordinator: PresentingViewControllerDelegate {
     
-        var wrapper: PresentingViewControllerWrapper
+        public var wrapper: PresentingViewControllerWrapper
         
-        var viewController: () -> UIViewController
+        public var viewController: () -> UIViewController
     
-        init(_ wrapper: PresentingViewControllerWrapper) {
+        public init(_ wrapper: PresentingViewControllerWrapper) {
             self.wrapper = wrapper
             self.viewController = wrapper.viewController
         }
     
         // MARK: Delegate Methods
         
-        func viewControllerToPresent() -> UIViewController {
+        public func viewControllerToPresent() -> UIViewController {
             wrapper.viewController()
         }
     }
 }
 
-protocol PresentingViewControllerDelegate: AnyObject {
+public protocol PresentingViewControllerDelegate: AnyObject {
     
     func viewControllerToPresent() -> UIViewController
 }
 
-class PresentingViewController: UIViewController {
+public class PresentingViewController: UIViewController {
     
-    weak var delegate: PresentingViewControllerDelegate?
+    public weak var delegate: PresentingViewControllerDelegate?
     
-    static func make() -> PresentingViewController {
+    public static func make() -> PresentingViewController {
         let viewController = PresentingViewController()
         return viewController
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard let viewController = delegate?.viewControllerToPresent() else {
             return

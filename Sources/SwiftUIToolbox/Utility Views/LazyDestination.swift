@@ -4,19 +4,19 @@
 
 import SwiftUI
 
-struct LazyDestination<Destination>: View where Destination: View {
+public struct LazyDestination<Destination>: View where Destination: View {
     
     let build: () -> Destination
     
-    init(_ build: @autoclosure @escaping () -> Destination) {
+    public init(_ build: @autoclosure @escaping () -> Destination) {
         self.build = build
     }
 
-    init(_ build: @escaping () -> Destination) {
+    public init(_ build: @escaping () -> Destination) {
         self.build = build
     }
     
-    var body: Destination {
+    public var body: Destination {
         build()
     }
 }
