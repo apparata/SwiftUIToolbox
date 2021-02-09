@@ -6,7 +6,7 @@
 
 import SwiftUI
 import UIKit
->
+
 private let memoryCacheCapacity = megabyte(128)
 private let diskCacheCapacity = megabyte(128)
 
