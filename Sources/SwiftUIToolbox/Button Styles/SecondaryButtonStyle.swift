@@ -6,6 +6,12 @@ import SwiftUI
 
 public let secondaryButtonDefaultRadius: CGFloat = 6
 
+#if os(macOS)
+public let secondaryButtonDefaultPlateColor: Color = .gray
+#else
+public let secondaryButtonDefaultPlateColor: Color = .systemGray5
+#endif
+
 /// The secondary button style has a light back plate with rounded corners.
 public struct SecondaryButtonStyle: ButtonStyle {
     
@@ -17,7 +23,7 @@ public struct SecondaryButtonStyle: ButtonStyle {
     
     public init(cornerRadius: CGFloat = secondaryButtonDefaultRadius,
                 textColor: Color = .accentColor,
-                plateColor: Color = .systemGray5) {
+                plateColor: Color = secondaryButtonDefaultPlateColor) {
         self.cornerRadius = cornerRadius
         self.textColor = textColor
         self.plateColor = plateColor

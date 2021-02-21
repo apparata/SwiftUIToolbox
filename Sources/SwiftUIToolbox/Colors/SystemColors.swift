@@ -3,7 +3,36 @@
 //
 
 import SwiftUI
-#if canImport(UIKit)
+#if canImport(AppKit)
+import AppKit
+
+extension Color {
+    
+    public static let systemRed = Color(NSColor.systemRed)
+    public static let systemGreen = Color(NSColor.systemGreen)
+    public static let systemBlue = Color(NSColor.systemBlue)
+    public static let systemOrange = Color(NSColor.systemOrange)
+    public static let systemYellow = Color(NSColor.systemYellow)
+    public static let systemPink = Color(NSColor.systemPink)
+    public static let systemPurple = Color(NSColor.systemPurple)
+    public static let systemTeal = Color(NSColor.systemTeal)
+    public static let systemIndigo = Color(NSColor.systemIndigo)
+    
+    public static let systemGray = Color(NSColor.systemGray)
+    
+    public static let label = Color(NSColor.labelColor)
+    public static let secondaryLabel = Color(NSColor.secondaryLabelColor)
+    public static let tertiaryLabel = Color(NSColor.tertiaryLabelColor)
+    public static let quaternaryLabel = Color(NSColor.quaternaryLabelColor)
+    public static let link = Color(NSColor.linkColor)
+    public static let placeholderText = Color(NSColor.placeholderTextColor)
+    
+    public static let separator = Color(NSColor.separatorColor)
+    
+    public static let systemBackground = Color(NSColor.controlBackgroundColor)
+}
+
+#elseif canImport(UIKit)
 import UIKit
 
 extension Color {

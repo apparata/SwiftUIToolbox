@@ -15,7 +15,7 @@ public struct SecondaryButton<Label>: View where Label: View {
     
     public init(cornerRadius: CGFloat = secondaryButtonDefaultRadius,
                 textColor: Color = .accentColor,
-                plateColor: Color = .systemGray5,
+                plateColor: Color = secondaryButtonDefaultPlateColor,
                 action: @escaping () -> Void,
                 @ViewBuilder label: @escaping () -> Label) {
         self.action = action
@@ -38,7 +38,7 @@ public extension SecondaryButton where Label == Text {
     init(_ title: String,
          cornerRadius: CGFloat = secondaryButtonDefaultRadius,
          textColor: Color = .accentColor,
-         plateColor: Color = .systemGray5,
+         plateColor: Color = secondaryButtonDefaultPlateColor,
          action: @escaping () -> Void) {
         self.cornerRadius = cornerRadius
         self.textColor = textColor

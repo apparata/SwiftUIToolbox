@@ -2,6 +2,8 @@
 //  Copyright © 2020 Apparata AB. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 import SwiftUI
 
 /// Emulates the UIKit page control.
@@ -15,8 +17,8 @@ public struct PageDots: View {
     
     public let currentPage: Int
     public let pageCount: Int
-    public let currentPageColor: (_ page: Int) -> UIColor
-    public let pageColor: UIColor
+    public let currentPageColor: (_ page: Int) -> NSUIColor
+    public let pageColor: NSUIColor
     
     public init(currentPage: Int,
          pageCount: Int,
@@ -40,3 +42,5 @@ public struct PageDots: View {
         }
     }
 }
+
+#endif

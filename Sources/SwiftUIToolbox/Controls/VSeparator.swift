@@ -10,7 +10,7 @@ public struct VSeparator: View {
     @Environment(\.displayScale) private var displayScale
     
     public let color: Color
-    
+
     public init(color: Color = .separator) {
         self.color = color
     }

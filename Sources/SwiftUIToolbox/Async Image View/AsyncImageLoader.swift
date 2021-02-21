@@ -149,7 +149,7 @@ private func isCancellationError(_ error: Error) -> Bool {
 extension AsyncImageLoader {
     
     #if DEBUG
-    static var isDebugModeEnabled = false
+    public static var isDebugModeEnabled = false
     #endif
     
     private func logCacheStatus(for request: URLRequest) {
