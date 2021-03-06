@@ -42,6 +42,10 @@ public final class Snapshotter {
     }
     
     #endif
+    
+    public init() {
+        //
+    }
 
     public func rasterizeView<Content: View>(_ view: Content,
                                              as format: Format,
