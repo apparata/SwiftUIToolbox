@@ -2,7 +2,6 @@
 //  Copyright © 2021 Apparata AB. All rights reserved.
 //
 
-
 import SwiftUI
 #if os(macOS)
 import AppKit
