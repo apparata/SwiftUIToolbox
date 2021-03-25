@@ -15,7 +15,7 @@ public extension View {
     }
 }
 
-public struct MouseTracker<Content>: View where Content : View {
+public struct MouseTracker<Content>: View where Content: View {
     
     private let onMove: (CGPoint) -> Void
     

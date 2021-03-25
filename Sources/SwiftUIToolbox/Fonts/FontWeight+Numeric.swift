@@ -7,6 +7,21 @@ import SwiftUI
 
 public extension Font.Weight {
     
+    var numeric: Int {
+        switch self {
+        case .ultraLight: return 100
+        case .thin: return 200
+        case .light: return 300
+        case .regular: return 400
+        case .medium: return 500
+        case .semibold: return 600
+        case .bold: return 700
+        case .heavy: return 800
+        case .black: return 900
+        default: return 400
+        }
+    }
+    
     /// Initialize the font weight with a numeric value from e.g. Figma.
     init(numeric: Int) {
         switch Int(numeric) {
