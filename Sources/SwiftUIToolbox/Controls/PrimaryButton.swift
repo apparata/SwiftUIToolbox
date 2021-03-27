@@ -49,3 +49,13 @@ public extension PrimaryButton where Label == Text {
         }
     }
 }
+
+struct PrimaryButton_Previews: PreviewProvider {
+    static var previews: some View {
+        PrimaryButton("Primary", textColor: .white, action: {})
+            .accentColor(.orange)
+            .frame(maxWidth: 150)
+            .previewLayout(.sizeThatFits)
+            .padding()
+    }
+}

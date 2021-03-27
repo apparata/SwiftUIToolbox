@@ -21,3 +21,11 @@ public struct HSeparator: View {
             .frame(maxWidth: .infinity)
     }
 }
+
+struct HSeparator_Previews: PreviewProvider {
+    static var previews: some View {
+        HSeparator()
+            .frame(width: 150, height: 100)
+            .previewLayout(.sizeThatFits)
+    }
+}

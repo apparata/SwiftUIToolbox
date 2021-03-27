@@ -56,5 +56,6 @@ struct Placeholder_Previews: PreviewProvider {
     static var previews: some View {
         Placeholder()
             .frame(width: 150, height: 100)
+            .previewLayout(.sizeThatFits)
     }
 }

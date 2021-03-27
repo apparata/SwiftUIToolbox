@@ -78,3 +78,33 @@ public extension EnumPicker where Label == Text {
         _selection = selection
     }
 }
+
+struct EnumPicker_Previews: PreviewProvider {
+    
+    enum Fruit: Pickable {
+        case apple
+        case banana
+        case mango
+        case orange
+        case pear
+    
+        var id: Self { self }
+    
+        var description: String {
+            switch self {
+            case .apple: return "🍎 Apple"
+            case .banana: return "🍌 Banana"
+            case .mango: return "🥭 Mango"
+            case .orange: return "🍊 Orange"
+            case .pear: return "🍐 Pear"
+            }
+        }
+    }
+    
+    static var previews: some View {
+        EnumPicker("Fruit", selection: .constant(Fruit.apple))
+            .pickerStyle(SegmentedPickerStyle())
+            .previewLayout(.sizeThatFits)
+            .padding()
+    }
+}

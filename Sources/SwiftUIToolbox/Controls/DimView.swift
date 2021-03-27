@@ -18,3 +18,11 @@ public struct DimView: View {
             .opacity(opacity)
     }
 }
+
+struct DimView_Previews: PreviewProvider {
+    static var previews: some View {
+        DimView()
+            .frame(width: 150, height: 100)
+            .previewLayout(.sizeThatFits)
+    }
+}

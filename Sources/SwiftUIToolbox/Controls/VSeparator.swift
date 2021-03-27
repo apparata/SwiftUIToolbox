@@ -21,3 +21,11 @@ public struct VSeparator: View {
             .frame(maxHeight: .infinity)
     }
 }
+
+struct VSeparator_Previews: PreviewProvider {
+    static var previews: some View {
+        VSeparator()
+            .frame(width: 150, height: 100)
+            .previewLayout(.sizeThatFits)
+    }
+}

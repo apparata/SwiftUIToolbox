@@ -49,3 +49,13 @@ public extension SecondaryButton where Label == Text {
         }
     }
 }
+
+struct SecondaryButton_Previews: PreviewProvider {
+    static var previews: some View {
+        SecondaryButton("Secondary", action: {})
+            .accentColor(.orange)
+            .frame(maxWidth: 150)
+            .previewLayout(.sizeThatFits)
+            .padding()
+    }
+}

@@ -43,4 +43,13 @@ public struct PageDots: View {
     }
 }
 
+struct PageDots_Previews: PreviewProvider {
+    static var previews: some View {
+        PageDots(currentPage: 0, pageCount: 3)
+            .previewLayout(.sizeThatFits)
+            .padding()
+            .background(Color.blue)
+    }
+}
+
 #endif
