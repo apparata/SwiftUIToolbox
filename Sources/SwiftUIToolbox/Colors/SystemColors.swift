@@ -1,5 +1,5 @@
 //
-//  
+//  Copyright © 2021 Apparata AB. All rights reserved.
 //
 
 import SwiftUI
