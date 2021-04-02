@@ -8,6 +8,10 @@ public struct LoadingIndicator: View {
     
     @State var t: CGFloat = 0
     
+    public init() {
+        //
+    }
+    
     public var body: some View {
         LoadingShape(t: t)
             .frame(width: 60, height: 30)
@@ -26,6 +30,10 @@ public struct LoadingShape: Shape {
     public var animatableData: CGFloat {
         get { t }
         set { t = newValue }
+    }
+    
+    public init(t: CGFloat) {
+        self.t = t
     }
     
     public func path(in rect: CGRect) -> Path {
