@@ -16,8 +16,12 @@ public struct LoadingIndicator: View {
         LoadingShape(t: t)
             .frame(width: 60, height: 30)
             .onAppear {
-                withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
-                    t = 3
+                // Workaround for incorrect animations if
+                // view is used inside a NavigationView.
+                DispatchQueue.main.async {
+                    withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
+                        t = 3
+                    }
                 }
             }
     }
