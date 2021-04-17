@@ -10,8 +10,11 @@ public struct WhatsNewView: View {
     
     let whatsNew: WhatsNew
     
-    public init(_ whatsNew: WhatsNew) {
+    let onContinue: (() -> Void)?
+    
+    public init(_ whatsNew: WhatsNew, onContinue: (() -> Void)? = nil) {
         self.whatsNew = whatsNew
+        self.onContinue = onContinue
     }
     
     public var body: some View {
@@ -33,6 +36,7 @@ public struct WhatsNewView: View {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
         presentationMode.wrappedValue.dismiss()
+        onContinue?()
     }
 }
 
