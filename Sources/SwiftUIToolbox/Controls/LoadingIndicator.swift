@@ -81,10 +81,17 @@ fileprivate extension CGRect {
 
 struct LoadingIndicator_Previews: PreviewProvider {
     static var previews: some View {
+        #if os(iOS)
         LoadingIndicator()
             .foregroundColor(.systemGray5)
             .padding()
             .previewLayout(.sizeThatFits)
+        #else
+        LoadingIndicator()
+            .foregroundColor(.red)
+            .padding()
+            .previewLayout(.sizeThatFits)
+        #endif
     }
 }
 

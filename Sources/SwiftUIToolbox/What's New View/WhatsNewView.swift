@@ -33,8 +33,10 @@ public struct WhatsNewView: View {
     }
     
     private func continueFromWhatsNew() {
+        #if os(iOS)
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
+        #endif
         presentationMode.wrappedValue.dismiss()
         onContinue?()
     }
