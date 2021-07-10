@@ -26,7 +26,7 @@ public struct WhatsNewView: View {
                 .padding(.top, 10)
             Spacer(minLength: 30)
             Button(whatsNew.continueButton, action: continueFromWhatsNew)
-                .buttonStyle(PrimaryButtonStyle())
+                .buttonStyle(WhatsNewButtonStyle())
                 .padding(.horizontal)
                 .padding([.horizontal, .bottom])
         }
