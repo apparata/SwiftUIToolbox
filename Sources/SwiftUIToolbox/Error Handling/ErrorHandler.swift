@@ -16,14 +16,18 @@ public class ViewErrorHandler: ObservableObject {
     @Published public var currentError: ViewErrorBeingHandled?
     
     public func handleError(_ error: Error) {
-        handleError(error, didHandle: nil)
+        handleError(error, title: nil, didHandle: nil)
     }
 
     public func handleError(_ error: Error, title: String?) {
-        handleError(error, didHandle: nil)
+        handleError(error, title: title, didHandle: nil)
     }
 
-    public func handleError(_ error: Error, title: String? = nil, didHandle: (() -> Void)?) {
+    public func handleError(_ error: Error, didHandle: (() -> Void)?) {
+        handleError(error, title: nil, didHandle: didHandle)
+    }
+
+    public func handleError(_ error: Error, title: String?, didHandle: (() -> Void)?) {
         currentError = ViewErrorBeingHandled(title: title,
                                              message: error.localizedDescription,
                                              didHandle: didHandle)
