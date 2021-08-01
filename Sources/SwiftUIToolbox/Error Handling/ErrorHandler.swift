@@ -15,6 +15,10 @@ public class ViewErrorHandler: ObservableObject {
     
     @Published public var currentError: ViewErrorBeingHandled?
     
+    public init() {
+        //
+    }
+    
     public func handleError(_ error: Error) {
         handleError(error, title: nil, didHandle: nil)
     }
@@ -47,6 +51,10 @@ public protocol ViewErrorHandling: ViewModifier {
 public struct AlertViewErrorHandling: ViewErrorHandling {
     
     @StateObject public var errorHandler = ViewErrorHandler()
+    
+    public init() {
+        //
+    }
     
     public func body(content: Content) -> some View {
         content
