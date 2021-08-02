@@ -3,6 +3,11 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 extension Color: Codable {
     
@@ -29,8 +34,12 @@ extension Color: Codable {
         var alpha: CGFloat = 1
         
         if let cgColor = cgColor {
-            let uiColor = UIColor(cgColor: cgColor)
-            uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+            #if canImport(UIKit)
+            let color = UIColor(cgColor: cgColor)
+            #elseif canImport(AppKit)
+            let color = NSColor(cgColor: cgColor) ?? .black
+            #endif
+            color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         }
         
         var container = encoder.container(keyedBy: CodingKeys.self)
