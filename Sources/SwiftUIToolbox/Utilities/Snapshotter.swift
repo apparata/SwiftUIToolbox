@@ -49,14 +49,16 @@ public final class Snapshotter {
     public func rasterizeView<Content: View>(_ view: Content,
                                              as format: Format,
                                              width: CGFloat,
-                                             height: CGFloat) -> Data? {
-        rasterizeView(view, as: format, size: CGSize(width: width, height: height))
+                                             height: CGFloat,
+                                             displayScale: CGFloat = 1) -> Data? {
+        rasterizeView(view, as: format, size: CGSize(width: width, height: height), displayScale: displayScale)
     }
         
     #if os(macOS)
     public func rasterizeView<Content: View>(_ view: Content,
                                              as format: Format,
-                                             size: CGSize) -> Data? {
+                                             size: CGSize,
+                                             displayScale: CGFloat = 1) -> Data? {
         let nsView = NSHostingView(rootView: view)
         nsView.frame = CGRect(origin: .zero, size: size)
         return rasterizeNSView(nsView, as: format)
@@ -78,8 +80,9 @@ public final class Snapshotter {
     
     public func rasterizeView<Content: View>(_ view: Content,
                                              as format: Format,
-                                             size: CGSize) -> Data? {
-        guard let image = rasterizeView(view, size: size) else {
+                                             size: CGSize,
+                                             displayScale: CGFloat = 1) -> Data? {
+        guard let image = rasterizeView(view, size: size, displayScale: displayScale) else {
             return nil
         }
         switch format {
@@ -90,12 +93,12 @@ public final class Snapshotter {
         }
     }
     
-    public func rasterizeView<Content: View>(_ view: Content, size: CGSize) -> UIImage? {
+    public func rasterizeView<Content: View>(_ view: Content, size: CGSize, displayScale: CGFloat = 1) -> UIImage? {
         let controller = UIHostingController(rootView: view)
         controller.view.bounds = CGRect(origin: .zero, size: size)
         
         let format = UIGraphicsImageRendererFormat()
-        format.scale = 1
+        format.scale = displayScale
         let image = UIGraphicsImageRenderer(size: controller.view.layer.frame.size, format: format).image { context in
             controller.view.drawHierarchy(in: controller.view.layer.bounds, afterScreenUpdates: true)
         }
