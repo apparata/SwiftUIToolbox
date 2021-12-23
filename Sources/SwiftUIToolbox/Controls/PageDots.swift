@@ -37,7 +37,7 @@ public struct PageDots: View {
                     .frame(width: 8, height: 8)
                     .foregroundColor(Color(page == currentPage ? currentPageColor(page)
                                                                : pageColor))
-                    .animation(.easeInOut(duration: 0.2))
+                    .animation(.easeInOut(duration: 0.2), value: page)
             }
         }
     }

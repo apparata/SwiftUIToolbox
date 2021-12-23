@@ -15,6 +15,6 @@ public struct ScaledOnTapButtonStyle: ButtonStyle {
     public func makeBody(configuration: Self.Configuration) -> some View {
         return configuration.label
             .scaleEffect(configuration.isPressed ? scale : 1)
-            .animation(.easeInOut(duration: 0.05))
+            .animation(.easeInOut(duration: 0.05), value: configuration.isPressed)
     }
 }
