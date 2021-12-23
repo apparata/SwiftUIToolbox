@@ -125,10 +125,4 @@ struct PopoverArrowShape: Shape {
     }
 }
 
-struct ToolbarPopover_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-
 #endif
