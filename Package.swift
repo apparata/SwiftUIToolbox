@@ -1,11 +1,11 @@
-// swift-tools-version:5.4
+// swift-tools-version:5.5
 
 import PackageDescription
 
 let package = Package(
     name: "SwiftUIToolbox",
     platforms: [
-        .iOS(.v14), .macOS(.v11), .tvOS(.v14)
+        .iOS(.v15), .macOS(.v11), .tvOS(.v14)
     ],
     products: [
         .library(name: "SwiftUIToolbox", targets: ["SwiftUIToolbox"])
