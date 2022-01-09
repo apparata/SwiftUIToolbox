@@ -4,6 +4,10 @@
 
 import SwiftUI
 
+extension ButtonStyle where Self == ActionButtonStyle {
+    public static var action: ActionButtonStyle { ActionButtonStyle() }
+}
+
 /// The action button style looks like the "Open" button in the App Store or TestFlight apps.
 ///
 /// Example:

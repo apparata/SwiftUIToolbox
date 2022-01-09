@@ -4,6 +4,12 @@
 
 import SwiftUI
 
+extension ButtonStyle where Self == ScaledOnTapButtonStyle {
+    public static func scaledOnTap(scale: CGFloat) -> ScaledOnTapButtonStyle {
+            return ScaledOnTapButtonStyle(scale: scale)
+        }
+}
+
 public struct ScaledOnTapButtonStyle: ButtonStyle {
         
     private let scale: CGFloat

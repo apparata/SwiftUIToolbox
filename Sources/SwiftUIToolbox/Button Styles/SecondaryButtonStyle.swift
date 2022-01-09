@@ -12,6 +12,17 @@ public let secondaryButtonDefaultPlateColor: Color = .gray
 public let secondaryButtonDefaultPlateColor: Color = .systemGray5
 #endif
 
+extension ButtonStyle where Self == SecondaryButtonStyle {
+    public static func secondary(
+        cornerRadius: CGFloat = secondaryButtonDefaultRadius,
+        textColor: Color = .primary,
+        plateColor: Color = .accentColor) -> SecondaryButtonStyle {
+            return SecondaryButtonStyle(cornerRadius: cornerRadius,
+                                        textColor: textColor,
+                                        plateColor: plateColor)
+        }
+}
+
 /// The secondary button style has a light back plate with rounded corners.
 public struct SecondaryButtonStyle: ButtonStyle {
     

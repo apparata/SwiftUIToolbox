@@ -6,6 +6,17 @@ import SwiftUI
 
 public let primaryButtonDefaultRadius: CGFloat = 6
 
+extension ButtonStyle where Self == PrimaryButtonStyle {
+    public static func primary(
+        cornerRadius: CGFloat = primaryButtonDefaultRadius,
+        textColor: Color = .primary,
+        plateColor: Color = .accentColor) -> PrimaryButtonStyle {
+            return PrimaryButtonStyle(cornerRadius: cornerRadius,
+                                      textColor: textColor,
+                                      plateColor: plateColor)
+        }
+}
+
 /// The primary button style has a back plate with rounded corners.
 public struct PrimaryButtonStyle: ButtonStyle {
     
