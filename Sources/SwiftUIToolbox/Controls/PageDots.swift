@@ -32,7 +32,7 @@ public struct PageDots: View {
     
     public var body: some View {
         HStack(spacing: 10) {
-            ForEach(0..<pageCount) { page in
+            ForEach((0..<pageCount).map { $0 }, id: \.self) { page in
                 Circle()
                     .frame(width: 8, height: 8)
                     .foregroundColor(Color(page == currentPage ? currentPageColor(page)
@@ -45,7 +45,7 @@ public struct PageDots: View {
 
 struct PageDots_Previews: PreviewProvider {
     static var previews: some View {
-        PageDots(currentPage: 0, pageCount: 3)
+        PageDots(currentPage: 0, pageCount: 4)
             .previewLayout(.sizeThatFits)
             .padding()
             .background(Color.blue)
