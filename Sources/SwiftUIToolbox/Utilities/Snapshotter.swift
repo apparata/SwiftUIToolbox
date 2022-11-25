@@ -50,8 +50,9 @@ public final class Snapshotter {
                                              as format: Format,
                                              width: CGFloat,
                                              height: CGFloat,
-                                             displayScale: CGFloat = 1) -> Data? {
-        rasterizeView(view, as: format, size: CGSize(width: width, height: height), displayScale: displayScale)
+                                             displayScale: CGFloat = 1,
+                                             backgroundColor: UIColor?) -> Data? {
+        rasterizeView(view, as: format, frame: CGRect(x: 0, y: 0, width: width, height: height), displayScale: displayScale, backgroundColor: backgroundColor)
     }
         
     #if os(macOS)
@@ -80,9 +81,10 @@ public final class Snapshotter {
     
     public func rasterizeView<Content: View>(_ view: Content,
                                              as format: Format,
-                                             size: CGSize,
-                                             displayScale: CGFloat = 1) -> Data? {
-        guard let image = rasterizeView(view, size: size, displayScale: displayScale) else {
+                                             frame: CGRect,
+                                             displayScale: CGFloat = 1,
+                                             backgroundColor: UIColor?) -> Data? {
+        guard let image = rasterizeView(view, frame: frame, displayScale: displayScale, backgroundColor: backgroundColor) else {
             return nil
         }
         switch format {
@@ -93,14 +95,27 @@ public final class Snapshotter {
         }
     }
     
-    public func rasterizeView<Content: View>(_ view: Content, size: CGSize, displayScale: CGFloat = 1) -> UIImage? {
+    public func rasterizeView<Content: View>(_ view: Content, frame: CGRect, displayScale: CGFloat = 1, backgroundColor: UIColor?) -> UIImage? {
         let controller = UIHostingController(rootView: view)
-        controller.view.bounds = CGRect(origin: .zero, size: size)
         
+        controller.additionalSafeAreaInsets = UIEdgeInsets(
+            top: -controller.view.safeAreaInsets.top,
+            left: -controller.view.safeAreaInsets.left,
+            bottom: -controller.view.safeAreaInsets.bottom,
+            right: -controller.view.safeAreaInsets.right)
+        
+        let bounds = CGRect(origin: .zero, size: frame.size)
+        
+        controller.view.frame = CGRect(origin: .zero, size: frame.size)
+                
         let format = UIGraphicsImageRendererFormat()
         format.scale = displayScale
         let image = UIGraphicsImageRenderer(size: controller.view.layer.frame.size, format: format).image { context in
-            controller.view.drawHierarchy(in: controller.view.layer.bounds, afterScreenUpdates: true)
+            if let backgroundColor {
+                backgroundColor.setFill()
+                context.fill(bounds)
+            }
+            controller.view.drawHierarchy(in: frame, afterScreenUpdates: true)
         }
 
         return image
