@@ -45,15 +45,6 @@ public final class Snapshotter {
     public init() {
         //
     }
-
-    public func rasterizeView<Content: View>(_ view: Content,
-                                             as format: Format,
-                                             width: CGFloat,
-                                             height: CGFloat,
-                                             displayScale: CGFloat = 1,
-                                             backgroundColor: UIColor?) -> Data? {
-        rasterizeView(view, as: format, frame: CGRect(x: 0, y: 0, width: width, height: height), displayScale: displayScale, backgroundColor: backgroundColor)
-    }
         
     #if os(macOS)
     public func rasterizeView<Content: View>(_ view: Content,
@@ -78,6 +69,15 @@ public final class Snapshotter {
     }
     
     #else
+
+    public func rasterizeView<Content: View>(_ view: Content,
+                                             as format: Format,
+                                             width: CGFloat,
+                                             height: CGFloat,
+                                             displayScale: CGFloat = 1,
+                                             backgroundColor: UIColor?) -> Data? {
+        rasterizeView(view, as: format, frame: CGRect(x: 0, y: 0, width: width, height: height), displayScale: displayScale, backgroundColor: backgroundColor)
+    }
     
     public func rasterizeView<Content: View>(_ view: Content,
                                              as format: Format,
