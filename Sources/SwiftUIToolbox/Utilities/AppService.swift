@@ -6,6 +6,13 @@ import SwiftUI
 
 // MARK: - AppService Property Wrapper
 
+/// Property wrapper providing access to an app service.
+///
+/// Example:
+///
+/// ```
+/// @AppService(\.randomNumbers) var randomNumbers
+/// ```
 @propertyWrapper public struct AppService<Service>: DynamicProperty {
     
     @Environment(\.appServices) private var appServices
@@ -23,17 +30,17 @@ import SwiftUI
 
 // MARK: - WithAppServices View
 
-struct WithAppServices<Content: View>: View {
+public struct WithAppServices<Content: View>: View {
     
     @Environment(\.appServices) private var appServices
     
     private let content: (AppServices) -> Content
     
-    init(@ViewBuilder content: @escaping (AppServices) -> Content) {
+    public init(@ViewBuilder content: @escaping (AppServices) -> Content) {
         self.content = content
     }
     
-    var body: some View {
+    public var body: some View {
         content(appServices)
     }
 }
@@ -41,6 +48,15 @@ struct WithAppServices<Content: View>: View {
 // MARK: - AppService Modifier
 
 extension View {
+    
+    /// Modifier for adding/overriding an app service in the environment.
+    ///
+    /// Example:
+    ///
+    /// ```
+    /// SomeView()
+    ///     .appService(\.randomNumbers, RandomNumberService(range: 0...10))
+    /// ```
     public func appService<Value>(
         _ keyPath: WritableKeyPath<AppServices, Value>,
         _ value: Value
@@ -75,6 +91,13 @@ public struct AppServiceModifier<Value>: ViewModifier {
 
 // MARK: AppServiceKey
 
+/// Key to use for accessing a custom App Service.
+///
+/// ```
+/// struct RandomNumberServiceKey: AppServiceKey {
+///     static let defaultValue = RandomNumberService()
+/// }
+/// ```
 public protocol AppServiceKey {
     associatedtype Value
     static var defaultValue: Value { get }
@@ -82,6 +105,20 @@ public protocol AppServiceKey {
 
 // MARK: AppServices
 
+/// Container for app services accessible from views.
+///
+/// ```
+/// extension AppServices {
+///     var randomNumbers: RandomNumberService {
+///         get { // swiftlint:disable:this implicit_getter
+///             return self[RandomNumberServiceKey.self]
+///         }
+///         set {
+///             self[RandomNumberServiceKey.self] = newValue
+///         }
+///      }
+/// }
+/// ```
 public struct AppServices {
     
     private var services: [any AppServiceEntry] = []
