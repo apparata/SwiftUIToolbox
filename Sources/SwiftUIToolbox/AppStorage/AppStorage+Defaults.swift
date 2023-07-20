@@ -37,7 +37,7 @@ public protocol AppStorageDefaults: ParameterizableAppStorageDefaults {
 }
 
 extension AppStorageDefaults {
-    static var defaults: Self { Self() }
+    public static var defaults: Self { Self() }
 }
 
 public protocol ParameterizableAppStorageDefaults {
