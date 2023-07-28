@@ -10,6 +10,10 @@ public struct AboutCommand: Commands {
 
     @Environment(\.openWindow) private var openWindow
     
+    public init() {
+        //
+    }
+    
     public var body: some Commands {
         // Replace the About window menu option.
         CommandGroup(replacing: .appInfo) {
