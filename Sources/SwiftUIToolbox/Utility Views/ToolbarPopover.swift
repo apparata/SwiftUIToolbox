@@ -65,7 +65,7 @@ extension View {
     }
 }
 
-public enum ToolbarPopoverPlacement {
+public enum ToolbarPopoverPlacement: Sendable {
     case leading
     case trailing
 }
