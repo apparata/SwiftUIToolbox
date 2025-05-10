@@ -57,6 +57,7 @@ extension View {
     /// SomeView()
     ///     .appService(\.randomNumbers, RandomNumberService(range: 0...10))
     /// ```
+    @available(*, deprecated, message: "Just use @Environment instead.")
     public func appService<Value>(
         _ keyPath: WritableKeyPath<AppServices, Value>,
         _ value: Value
@@ -119,7 +120,7 @@ public protocol AppServiceKey {
 ///      }
 /// }
 /// ```
-public struct AppServices {
+public struct AppServices: @unchecked Sendable {
     
     private var services: [any AppServiceEntry] = []
     
