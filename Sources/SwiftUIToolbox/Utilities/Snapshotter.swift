@@ -9,7 +9,7 @@ import AppKit
 import UIKit
 #endif
 
-public final class Snapshotter {
+@MainActor public final class Snapshotter {
     
     #if os(macOS)
     

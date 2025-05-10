@@ -29,7 +29,7 @@ extension View {
     }
 }
 
-struct AnimationCompletionObserverModifier<Value>: ViewModifier, Animatable where Value: VectorArithmetic {
+struct AnimationCompletionObserverModifier<Value>: ViewModifier, @preconcurrency Animatable where Value: VectorArithmetic {
 
     // Property is set once the animation is completed.
     var animatableData: Value {

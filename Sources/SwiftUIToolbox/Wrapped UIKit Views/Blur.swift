@@ -62,7 +62,7 @@ public struct Blur: UIViewRepresentable {
     
     // MARK: - Coordinator
     
-    public class Coordinator {
+    @MainActor public class Coordinator {
     
         var blur: Blur
         

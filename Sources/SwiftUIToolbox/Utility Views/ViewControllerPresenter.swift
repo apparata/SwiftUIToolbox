@@ -8,8 +8,8 @@ import Foundation
 import SwiftUI
 import UIKit
 
-public struct ViewControllerPresenter: View {
-    
+@MainActor public struct ViewControllerPresenter: View {
+
     @Binding public var isPresented: Bool
     
     public var viewController: () -> UIViewController
@@ -26,8 +26,8 @@ public struct ViewControllerPresenter: View {
     }
 }
 
-public struct PresentingViewControllerWrapper: UIViewControllerRepresentable {
-    
+@MainActor public struct PresentingViewControllerWrapper: UIViewControllerRepresentable {
+
     var viewController: () -> UIViewController
     
     public init(viewController: @escaping () -> UIViewController) {
@@ -50,8 +50,8 @@ public struct PresentingViewControllerWrapper: UIViewControllerRepresentable {
     
     // MARK: - Coordinator
     
-    public class Coordinator: PresentingViewControllerDelegate {
-    
+    @MainActor public class Coordinator: @preconcurrency PresentingViewControllerDelegate {
+
         public var wrapper: PresentingViewControllerWrapper
         
         public var viewController: () -> UIViewController

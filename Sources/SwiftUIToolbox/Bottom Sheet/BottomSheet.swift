@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Bottom Sheet Height
 
-public enum BottomSheetHeight: Equatable {
+public enum BottomSheetHeight: Equatable, Sendable {
     case constant(Int)
     case topGap(Int)
     case percent(Int)
@@ -21,8 +21,8 @@ public enum BottomSheetHeight: Equatable {
 /// While `BottomSheetDetent` conforms to `Equatable`, you should not use this for equality
 /// in your own code, as it takes some internal state into account, that for external purposes would mean
 /// that detents that appear equal are not equal. Instead, compare the `id` property for equality.
-public struct BottomSheetDetent: Equatable, Identifiable {
-        
+public struct BottomSheetDetent: Equatable, Identifiable, Sendable {
+
     public let id: UUID
     
     public let sheetHeight: BottomSheetHeight
@@ -277,11 +277,11 @@ public struct BottomSheet<Header: View, Content: View>: View {
 
 // MARK: - Detent Transitions
 
-struct FadeQuicklyModifier: AnimatableModifier {
+struct FadeQuicklyModifier: AnimatableModifier, Sendable {
 
     var t: Double
     
-    var animatableData: Double {
+    nonisolated var animatableData: Double {
         get { return t }
         set { t = newValue }
     }
@@ -304,7 +304,7 @@ struct FadeOutLateModifier: AnimatableModifier {
 
     var t: Double
     
-    var animatableData: Double {
+    nonisolated var animatableData: Double {
         get { return t }
         set { t = newValue }
     }
@@ -337,7 +337,7 @@ extension BottomSheet where Header == EmptyView {
 
 // MARK: - Bottom Sheet Style
 
-public struct BottomSheetStyle {
+public struct BottomSheetStyle: Sendable {
     
     public let detents: [BottomSheetDetent]
     public let dragIndicator: Bool
