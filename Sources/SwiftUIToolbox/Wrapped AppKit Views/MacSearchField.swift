@@ -9,7 +9,7 @@ import SwiftUI
 
 /// Wrapper view for `NSSearchField`.
 public struct MacSearchField: NSViewRepresentable {
-    
+
     @Binding var text: String
     
     private var placeholder: String
@@ -87,7 +87,7 @@ public struct MacSearchField: NSViewRepresentable {
             }
         }
         
-        @objc
+        @MainActor @objc
         fileprivate func searchAction(_ sender: NSTextField?) {
             action?(sender?.stringValue ?? "")
         }
