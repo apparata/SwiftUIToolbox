@@ -9,8 +9,8 @@ import UIKit
 import AppKit
 #endif
 
-extension Color: Codable {
-    
+extension Color: @retroactive Codable {
+
     enum CodingKeys: String, CodingKey {
         case red
         case green

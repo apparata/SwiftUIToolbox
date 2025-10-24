@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "SwiftUIToolbox",
     platforms: [
-        .iOS(.v17), .macOS(.v14), .tvOS(.v17), .visionOS(.v1)
+        .iOS(.v16), .macOS(.v14), .tvOS(.v16), .visionOS(.v1)
     ],
     products: [
         .library(name: "SwiftUIToolbox", targets: ["SwiftUIToolbox"])
