@@ -9,7 +9,7 @@ import SwiftUI
 /// Use `Stagger` when you want to animate the appearance or disappearance of multiple views
 /// with a delay between each, using a specified behavior.
 ///
-@available(iOS 18.0, *)
+@available(iOS 18.0, macOS 15.0, tvOS 18.0, visionOS 2.0, *)
 public struct Stagger<Content: View>: View {
 
     /// Defines how the staggered transition should behave.
@@ -51,7 +51,7 @@ public struct Stagger<Content: View>: View {
 /// Defines the behavior parameters for a `Stagger` animation.
 ///
 /// Use this to customize timing, offset, scale, and animation curve for staggered transitions.
-@available(iOS 18.0, *)
+@available(iOS 18.0, macOS 15.0, tvOS 18.0, visionOS 2.0, *)
 public struct StaggerBehavior: Equatable {
     /// Delay between each view’s animation start.
     public var delay: Double = 0.05
@@ -83,7 +83,7 @@ public struct StaggerBehavior: Equatable {
 
 // MARK: - Stagger Transition
 
-@available(iOS 18.0, *)
+@available(iOS 18.0, macOS 15.0, tvOS 18.0, visionOS 2.0, *)
 private struct StaggerTransition: Transition {
 
     var index: Int
@@ -119,7 +119,7 @@ private struct StaggerTransition: Transition {
 
 // MARK: - Preview
 
-@available(iOS 18.0, *)
+@available(iOS 18.0, macOS 15.0, tvOS 18.0, visionOS 2.0, *)
 #Preview("Stagger") {
 
     @Previewable @State var showStuff: Bool = false
