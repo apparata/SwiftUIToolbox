@@ -17,6 +17,10 @@ public struct AlwaysOnTop: View {
 
     @State private var window: NSWindow?
 
+    public init() {
+        //
+    }
+
     public var body: some View {
         WindowReflection(window: $window)
             .onReceive(window.publisher) { window in
@@ -32,6 +36,10 @@ public struct AlwaysOnTop: View {
 
 public struct AlwaysOnTopCommand: Commands {
 
+    public init() {
+        //
+    }
+
     public var body: some Commands {
         CommandGroup(after: .windowArrangement) {
             // There is a SwiftUI bug that keeps the checkmark from updating.
@@ -42,17 +50,17 @@ public struct AlwaysOnTopCommand: Commands {
 
 // MARK: - Always on Top Checkbox
 
-struct AlwaysOnTopCheckbox: View {
-    
-    let title: LocalizedStringKey
-    
-    @AppStorage(AlwaysOnTop.settingsKey) var isAlwaysOnTop: Bool = false
-    
-    init(_ title: LocalizedStringKey = "Always on top") {
+public struct AlwaysOnTopCheckbox: View {
+
+    private let title: LocalizedStringKey
+
+    @AppStorage(AlwaysOnTop.settingsKey) private var isAlwaysOnTop: Bool = false
+
+    public init(_ title: LocalizedStringKey = "Always on top") {
         self.title = title
     }
     
-    var body: some View {
+    public var body: some View {
         Toggle(title, isOn: $isAlwaysOnTop)
             .toggleStyle(CheckboxToggleStyle())
     }
