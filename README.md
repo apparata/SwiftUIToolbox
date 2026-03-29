@@ -19,6 +19,7 @@ See the LICENSE file for licensing information.
 - [Shapes](#shapes)
 - [About Window](#about-window)
 - [What's New View](#whats-new-view)
+- [Inspector Grid (macOS)](#inspector-grid-macos)
 - [Platform Support](#platform-support)
 
 ## Animation
@@ -1102,6 +1103,193 @@ struct WhatsNewExample: View {
     }
 }
 ```
+
+## Inspector Grid (macOS)
+
+A set of views for building inspector-style property grids, commonly used in sidebars for editing object properties. The grid uses SwiftUI's `Grid` layout with a label column and a value column.
+
+### Basic Inspector
+
+Wrap your rows in an `InspectorGrid` and use `InspectorSectionHeader`, `InspectorLabel`, and value views to build the layout.
+
+```swift
+#if os(macOS)
+import SwiftUIToolbox
+
+struct DocumentInspector: View {
+    @State private var name = "Untitled"
+
+    var body: some View {
+        InspectorGrid {
+            InspectorSectionHeader("General")
+
+            GridRow {
+                InspectorLabel("Name")
+                InspectorTextField($name)
+            }
+
+            GridRow {
+                InspectorLabel("Type")
+                InspectorTextValue("Document")
+            }
+
+            GridRow {
+                InspectorLabel("Created")
+                InspectorDateField(Date.now)
+            }
+
+            InspectorDivider()
+
+            InspectorSectionHeader("Stats")
+
+            GridRow {
+                InspectorLabel("Word Count")
+                InspectorNumericField(4200)
+            }
+        }
+    }
+}
+#endif
+```
+
+### Building Custom Row Views
+
+For reuse, define small row views that combine `InspectorLabel` with a value view inside a `GridRow`.
+
+```swift
+#if os(macOS)
+import SwiftUIToolbox
+
+struct InfoRow: View {
+    private let title: String
+    private let details: String
+
+    init(_ title: String, _ details: String) {
+        self.title = title
+        self.details = details
+    }
+
+    var body: some View {
+        GridRow {
+            InspectorLabel(title)
+            InspectorTextValue(details)
+        }
+    }
+}
+
+struct TextFieldRow: View {
+    private let title: String
+    @Binding private var details: String
+
+    init(_ title: String, _ details: Binding<String>) {
+        self.title = title
+        self._details = details
+    }
+
+    var body: some View {
+        GridRow {
+            InspectorLabel(title)
+            InspectorTextField($details)
+        }
+    }
+}
+
+struct BoolRow: View {
+    private let title: String
+    private let value: Bool
+
+    init(_ title: String, _ value: Bool) {
+        self.title = title
+        self.value = value
+    }
+
+    var body: some View {
+        GridRow {
+            InspectorLabel(title)
+            InspectorTextValue(value ? "Yes" : "No")
+                .foregroundColor(value ? .green : .secondary)
+        }
+    }
+}
+#endif
+```
+
+### Using Custom Rows
+
+```swift
+#if os(macOS)
+import SwiftUIToolbox
+
+struct NodeEditor: View {
+    @State private var nodeName = "My Node"
+
+    var body: some View {
+        InspectorGrid {
+            InspectorSectionHeader("Node")
+            TextFieldRow("Name", $nodeName)
+            InfoRow("Type", "Transform")
+            InfoRow("Category", "Geometry")
+            BoolRow("Visible", true)
+
+            InspectorDivider()
+
+            InspectorSectionHeader("Position")
+            InfoRow("X", "120.0")
+            InfoRow("Y", "45.0")
+        }
+    }
+}
+#endif
+```
+
+### Section Picker Header
+
+Use `InspectorSectionPickerHeader` for sections where the user can switch between modes using a picker.
+
+```swift
+#if os(macOS)
+import SwiftUIToolbox
+
+enum DisplayMode: String, CaseIterable, Identifiable, CustomStringConvertible, Hashable {
+    case visual
+    case raw
+
+    var id: Self { self }
+    var description: String { rawValue.capitalized }
+}
+
+struct ModeInspector: View {
+    @State private var mode: DisplayMode = .visual
+
+    var body: some View {
+        InspectorGrid {
+            InspectorSectionPickerHeader("Display", value: $mode)
+
+            GridRow {
+                InspectorLabel("Mode")
+                InspectorTextValue(mode.description)
+            }
+        }
+    }
+}
+#endif
+```
+
+### Available Components
+
+| Component | Description |
+|---|---|
+| `InspectorGrid` | Scrollable grid container for inspector rows |
+| `InspectorSectionHeader` | Section title spanning both columns |
+| `InspectorSectionPickerHeader` | Section title with an inline enum picker |
+| `InspectorDivider` | Horizontal divider between sections |
+| `InspectorLabel` | Trailing-aligned label for the left column |
+| `InspectorTextValue` | Read-only text value with copy context menu |
+| `InspectorTextField` | Editable text field with copy context menu |
+| `InspectorNumericField` | Monospaced numeric value with copy context menu |
+| `InspectorDateField` | ISO 8601 formatted date with copy context menu |
+| `InspectorLinkField` | Tappable link wrapping an `InspectorTextValue` |
+| `InspectorToggle` | Toggle switch for the right column |
 
 ## Platform Support
 
